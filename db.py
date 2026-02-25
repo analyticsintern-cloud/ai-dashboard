@@ -3,12 +3,19 @@ from sqlalchemy import create_engine
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
+
+# def get_engine():
+#     return create_engine(
+#         f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@"
+#         f"{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+#     )
+
 
 def get_engine():
     return create_engine(
-        f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@"
-        f"{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+        f"postgresql+psycopg2://{st.secrets['DB_USER']}:{st.secrets['DB_PASSWORD']}@"
+        f"{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}"
     )
 
 def get_campaign_names():
@@ -186,5 +193,6 @@ def get_campaign_performance_summary():
     df = pd.read_sql(query, engine)
 
     df["roas"] = df["sales"] / df["budget_consumed"]
+
 
     return df
