@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # load_dotenv()
 
@@ -196,3 +196,4 @@ def get_campaign_performance_summary():
 
 
     return df
+
